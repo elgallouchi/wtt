@@ -90,14 +90,16 @@ const searchData = (val) => {
                     <span>emp</span>
                     <span></span>
                 </li>`;
-  if (!localData) {
-    output = `Pas encore de code ajouté`;
+  console.log(localData);
+  if (localData === null) {
+    lists.innerHTML = `Pas encore de code ajouté`;
+    return;
   }
   let response = localData.filter((el) => {
     return val === el.code;
   });
   if (response.length === 0) {
-    output = `Pas d'emplacement avec ce code ${val}`;
+    output = `Pas d'emplacement avec ce code "${val}"`;
   } else {
     response.forEach((data) => {
       output += `<li class="list-content">

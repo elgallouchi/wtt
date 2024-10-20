@@ -10,9 +10,15 @@ header {
   background-color: blueviolet;
   padding: 1rem;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 4rem;
 }
-
+header a {
+  color: #fff;
+  position: absolute;
+  right: 3rem;
+}
 form {
 }
 form div {
@@ -20,11 +26,12 @@ form div {
 form div input {
   padding: 0.7rem;
   border: 1px solid #333;
-
+  font-size: 1rem;
 }
 form div button {
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.7rem;
+  font-size: 1rem;
 }
 section {
 }
