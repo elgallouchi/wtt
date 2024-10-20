@@ -90,6 +90,9 @@ const searchData = (val) => {
                     <span>emp</span>
                     <span></span>
                 </li>`;
+  if (!localData) {
+    output = `Pas encore de code ajouté`;
+  }
   let response = localData.filter((el) => {
     return val === el.code;
   });

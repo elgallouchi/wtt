@@ -10,7 +10,7 @@ header {
   background-color: blueviolet;
   padding: 1rem;
   display: flex;
-  justify-content: center;
+  justify-content:space-between;
 }
 
 form {
@@ -18,7 +18,7 @@ form {
 form div {
 }
 form div input {
-  padding: 0.5rem;
+  padding: 0.7rem;
   border: 1px solid #333;
 
 }
