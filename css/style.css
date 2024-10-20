@@ -156,12 +156,11 @@ ul li.list-content span {
 
 /* footer */
 footer {
-
 }
-footer .copyright {
-  font-size: .7rem;
+.copyright {
+  font-size: 0.7rem;
   position: absolute;
-  bottom: .5rem;
+  bottom: 0.5rem;
   right: 1rem;
   color: #555;
 }
