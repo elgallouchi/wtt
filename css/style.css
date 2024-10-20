@@ -153,3 +153,15 @@ ul li.list-content span {
   padding: 0.7rem;
   border-radius: 0.3rem;
 }
+
+/* footer */
+footer {
+
+}
+footer .copyright {
+  font-size: .7rem;
+  position: absolute;
+  bottom: .5rem;
+  right: 1rem;
+  color: #555;
+}
