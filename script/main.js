@@ -1,25 +1,12 @@
-let btnOpenPopUp = document.getElementById("btn-open-pop-up");
-let addCode = document.getElementById("add-code");
-let closePopUp = document.getElementById("close-pop-up");
 
 let codeBarInput = document.getElementById("code-bare");
 let emplacementInput = document.getElementById("emplacement");
-let btnAddCode = document.getElementById("btn-add-code");
 
 let btnSearch = document.getElementById("btn-search");
 let searchInput = document.getElementById("search-input");
 
 let lists = document.getElementById("lists");
-
-btnOpenPopUp.addEventListener("click", () => {
-  console.log("hello");
-  addCode.style.display = "flex";
-  console.log("hello2");
-});
-
-closePopUp.addEventListener("click", () => {
-  addCode.style.display = "none";
-});
+let btnAddCode = document.getElementById("btn-add-code");
 
 btnAddCode.addEventListener("click", (e) => {
   e.preventDefault();
@@ -46,6 +33,7 @@ btnAddCode.addEventListener("click", (e) => {
   emplacementInput.value = "";
 });
 
+
 // wrrite in localestorage
 const setDataLocal = (data) => {
   let localData = JSON.parse(localStorage.getItem("local-data"));
@@ -66,14 +54,6 @@ const getDataLocal = () => {
   return localData;
 };
 
-// check if data is available
-const checkData = (newData) => {
-  let localData = JSON.parse(localStorage.getItem("local-data"));
-  let editData = [];
-  let rt = localData.filter((data) => {
-    newData.code === data.code ? true : false;
-  });
-};
 
 // search
 btnSearch.addEventListener("click", (e) => {
