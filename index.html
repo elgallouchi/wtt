@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WTT</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/history.css" />
   </head>
   <body>
     <header>
@@ -39,16 +40,34 @@
         </form>
       </div>
     </section>
-    <section class="btn-open-pop-up">
+    <!-- <section class="btn-open-pop-up">
       <button id="btn-open-pop-up">+</button>
+    </section> -->
+
+    <section id="bottom-menu">
+      <div class="container">
+        <div class="add">
+          <img id="btn-open-pop-up" src="./assets/add-icon.png" />
+        </div>
+        <div class="ean">
+          <a href="codes.html"><img src="./assets/barre-code-icon.png" /></a>
+        </div>
+        <div class="emp">
+          <a href="emplacements.html"><img src="./assets/tiroir-icon.png" /></a>
+        </div>
+      </div>
     </section>
+
     <footer>
       <div class="copyright">
-        <a href="codes.html">Codes</a> -
-        <a href="emplacements.html">Emplacements Vides</a> - ELGALLOUCHI - v 1.0.1
+        ELGALLOUCHI _ v 1.0.1 -
+        <a href="codes.html">ean</a> -
+        <a href="emplacements.html">emp</a>
       </div>
     </footer>
     <script src="script/main.js"></script>
     <script src="script/btn.js"></script>
+    <script src="script/historySearch.js"></script>
+    <script src="script/delete.js"></script>
   </body>
 </html>

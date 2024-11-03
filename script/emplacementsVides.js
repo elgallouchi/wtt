@@ -38,6 +38,8 @@ const getDataLocal = () => {
                       <span></span>
                   </li>`;
   if (dataLocal !== null) {
+    // dataLocal.reverse();
+    dataLocal.sort((a, b) => a.emplacement.toLowerCase().localeCompare(b.emplacement.toLowerCase()));
     dataLocal.forEach((data) => {
       output += `<li class="list-content">
                         <span>${data.emplacement}</span>

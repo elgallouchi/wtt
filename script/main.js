@@ -1,4 +1,3 @@
-
 let codeBarInput = document.getElementById("code-bare");
 let emplacementInput = document.getElementById("emplacement");
 
@@ -31,8 +30,8 @@ btnAddCode.addEventListener("click", (e) => {
   }
   codeBarInput.value = "";
   emplacementInput.value = "";
+  searchData(codeValue);
 });
-
 
 // wrrite in localestorage
 const setDataLocal = (data) => {
@@ -54,38 +53,66 @@ const getDataLocal = () => {
   return localData;
 };
 
-
 // search
 btnSearch.addEventListener("click", (e) => {
   e.preventDefault();
-  searchData(searchInput?.value);
-  console.log("first");
+  // if input is empty
+  if (searchInput?.value.length !== 4) {
+    alert("Entrez les 4 dernèers chiffres SVP !");
+  } else {
+    searchData(searchInput?.value);
+    
+  }
 });
 
+// write history data to local storage
+const writeHisoryData = (newInput) => {
+  let data = JSON.parse(localStorage.getItem("history-data"));
+  if (data !== null) {
+    const exist = data.some((el) => el.ean === newInput);
+    const filtred = data.filter((el) => el.ean !== newInput);
+    if (!exist) {
+      data.push({ ean: newInput });
+      localStorage.setItem("history-data", JSON.stringify(data));
+    } else {
+      filtred.push({ ean: newInput });
+      localStorage.setItem("history-data", JSON.stringify(filtred));
+    }
+  } else {
+    localStorage.setItem("history-data", JSON.stringify([{ ean: newInput }]));
+  }
+};
+
 // search function
-const searchData = (val) => {
-  let localData = getDataLocal();
+const searchData = async (val) => {
+  writeHisoryData(val);
+  let localData = await getDataLocal();
   let output = `<li class="list-head">
                     <span>ean</span>
                     <span>emp</span>
                     <span></span>
                 </li>`;
-  console.log(localData);
   if (localData === null) {
     lists.innerHTML = `Pas encore de code ajouté`;
     return;
   }
-  let response = localData.filter((el) => {
+  let response = await localData.filter((el) => {
     return val === el.code;
   });
   if (response.length === 0) {
-    output = `Pas d'emplacement avec ce code "${val}"`;
+    output = `<div>Pas d'emplacement avec ce code "${val}"</div>
+    <button onclick="showHistory()" id="btn-accueil">Accueil</button>`;
   } else {
+    response.sort((a, b) =>
+      a.emplacement.toLowerCase().localeCompare(b.emplacement.toLowerCase())
+    );
     response.forEach((data) => {
       output += `<li class="list-content">
                     <span>${data.code}</span>
                     <span>${data.emplacement}</span>
-                    <span>x</span>
+                    <span onclick="deleteCode('${
+                      data.code + "" + data.emplacement
+                    }')">x</span>
                 </li>`;
     });
   }
