@@ -6,6 +6,10 @@
     <title>WTT</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/history.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"
+    />
   </head>
   <body>
     <header>
@@ -29,14 +33,50 @@
     </section>
     <section class="add-code" id="add-code">
       <div class="container">
+        <!-- <div> -->
         <div class="add-code-head">
-          <h3>Add Code</h3>
+          <!-- <h3>Ajouter un produit</h3> -->
           <span class="close" id="close-pop-up">X</span>
         </div>
-        <form>
-          <input id="code-bare" type="text" placeholder="0000" />
-          <input id="emplacement" type="text" placeholder="A012" />
-          <button id="btn-add-code">Add</button>
+        <div class="radios" id="radios">
+          <h3>Ajouter</h3>
+          <div class="">
+            <input
+              type="radio"
+              name="option"
+              value="ean"
+              checked
+              id="ean-radio"
+            />
+            <label for="ean-radio">Code EAN</label>
+            <input type="radio" name="option" value="emp" id="emp-radio" />
+            <label for="emp-radio">Emplacement</label>
+          </div>
+        </div>
+        <form id="add-product-form">
+          <h3>Ajouter un produit</h3>
+          <div>
+            <label for="code-bare">EAN</label>
+            <input id="code-bare" type="text" placeholder="1234567890123" />
+          </div>
+          <div>
+            <label for="code-ref">Référence</label>
+            <input id="code-ref" type="text" placeholder="651AUT059" />
+          </div>
+          <div>
+            <label for="emplacement">Emplacement</label>
+            <input id="emplacement" type="text" placeholder="A012" />
+          </div>
+          <button id="btn-add-code">Ajouter</button>
+        </form>
+        <!-- </div> -->
+        <form id="add-emplacement-form">
+          <h3>Ajouter un emplacement</h3>
+          <div>
+            <label for="emplacement-input">Emplacement</label>
+            <input type="text" id="emplacement-input" placeholder="651AUT059" />
+          </div>
+          <button id="btn-add-emplacement">Ajouter</button>
         </form>
       </div>
     </section>
@@ -50,24 +90,37 @@
           <img id="btn-open-pop-up" src="./assets/add-icon.png" />
         </div>
         <div class="ean">
-          <a href="codes.html"><img src="./assets/barre-code-icon.png" /></a>
+          <!-- <a href="codes.html"> -->
+          <img id="show-list-code" src="./assets/barre-code-icon.png" />
+          <!-- </a> -->
         </div>
         <div class="emp">
-          <a href="emplacements.html"><img src="./assets/tiroir-icon.png" /></a>
+          <!-- <a href="emplacements.html"> -->
+          <img id="show-list-emplacement" src="./assets/tiroir-icon.png" />
+          <!-- </a> -->
+        </div>
+        <div class="his">
+          <!-- <a href="emplacements.html"> -->
+          <img id="show-list-history" src="./assets/history-icon.png" />
+          <!-- </a> -->
         </div>
       </div>
     </section>
 
     <footer>
       <div class="copyright">
-        ELGALLOUCHI _ v 1.0.1 -
-        <a href="codes.html">ean</a> -
-        <a href="emplacements.html">emp</a>
+        <a href="https://elgallouchi.github.io" target="_blank">
+          ELGALLOUCHI _ v 1.0.2
+        </a>
       </div>
     </footer>
     <script src="script/main.js"></script>
     <script src="script/btn.js"></script>
     <script src="script/historySearch.js"></script>
     <script src="script/delete.js"></script>
+    <script src="script/selectForm.js"></script>
+    <script src="script/emplacementsVides.js"></script>
+    <script src="script/codes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
   </body>
 </html>

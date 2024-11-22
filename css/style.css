@@ -71,6 +71,7 @@ ul li.list-content {
   border: 1px solid #bbb;
   border-radius: 0.3rem;
   margin: 0.3rem 0;
+  position: relative;
 }
 
 ul li.list-content span:nth-of-type(1) {
@@ -79,10 +80,22 @@ ul li.list-content span:nth-of-type(1) {
 ul li.list-content span:nth-of-type(2) {
   text-transform: uppercase;
 }
-ul li.list-content span:nth-last-of-type(1) {
+ul li.list-content span:nth-of-type(3) {
+  text-transform: uppercase;
+}
+.btn-delete {
   color: red;
   font-weight: bold;
   cursor: pointer;
+  position: absolute;
+  bottom: 0.2rem;
+  right: 0.5rem;
+}
+.ean-ref {
+  /* border: 1px solid; */
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
 }
 
 /*  */
@@ -93,7 +106,7 @@ ul li.list-content span:nth-last-of-type(1) {
   bottom: 0;
   right: 0;
   left: 0;
-  display: none;
+  /* display: none; */
   justify-content: center;
   align-items: center;
   padding: 1rem;
@@ -112,26 +125,49 @@ ul li.list-content span:nth-last-of-type(1) {
 .add-code-head {
   display: flex;
   justify-content: space-between;
-}
-.add-code-head h3 {
-  color: #333;
+  position: relative;
 }
 .add-code-head span.close {
   cursor: pointer;
+  position: absolute;
+  right: 0.5rem;
 }
-.add-code .container form {
+#add-product-form,
+#add-emplacement-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-.add-code .container form .close {
+#add-emplacement-form {
+  display: none;
 }
-.add-code .container form input {
+#add-product-form h3,
+#add-emplacement-form h3 {
+  color: #444;
+  border-bottom: 3px solid darkviolet;
+  padding: 0.5rem;
+  width: max-content;
+}
+#add-product-form > div,
+#add-emplacement-form > div {
+  width: 100%;
+}
+#add-product-form label,
+#add-emplacement-form label {
+  font-size: 0.9rem;
+  color: #333;
+}
+#add-product-form .close {
+}
+#add-product-form input,
+#add-emplacement-form input {
   padding: 1rem;
   border: 1px solid #333;
   border-radius: 0.3rem;
+  width: 100%;
 }
-.add-code .container form button {
+#add-product-form button,
+#add-emplacement-form button {
   padding: 1rem;
   background-color: darkviolet;
   color: #fff;
@@ -206,7 +242,7 @@ footer {
 
 /* bottom menu */
 #bottom-menu {
-  background-color:darkviolet;
+  background-color: darkviolet;
   position: fixed;
   bottom: 0;
   width: 100%;

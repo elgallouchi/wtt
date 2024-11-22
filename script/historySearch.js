@@ -30,3 +30,7 @@ const deleteHistory = () => {
 };
 
 showHistory();
+
+document.getElementById("show-list-history").addEventListener("click", (e) => {
+  showHistory();
+});

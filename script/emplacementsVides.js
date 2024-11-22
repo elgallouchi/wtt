@@ -1,37 +1,37 @@
-let emplacementList = document.getElementById("emplacement-list");
-let btnAddEmplacement = document.getElementById("btn-add-emplacement");
-let emplacementInput = document.getElementById("emplacement-input");
+let emplacementList = document.getElementById("lists");
+// let btnAddEmplacement = document.getElementById("btn-add-emplacement");
+// let emplacementInput = document.getElementById("emplacement-input");
 
-btnAddEmplacement.addEventListener("click", (e) => {
-  e.preventDefault();
-  let data = [];
-  const emplacementsVidesLocal = JSON.parse(
-    localStorage.getItem("emplacements-vides")
-  );
-  if (emplacementsVidesLocal !== null) {
-    // check if emplacement exist
-    const exist = emplacementsVidesLocal.some(
-      (el) => el.emplacement === emplacementInput.value
-    );
-    if (exist) {
-      alert("This emplacement is already added !");
-    } else {
-      emplacementsVidesLocal.push({ emplacement: emplacementInput.value });
+// btnAddEmplacement.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   let data = [];
+//   const emplacementsVidesLocal = JSON.parse(
+//     localStorage.getItem("emplacements-vides")
+//   );
+//   if (emplacementsVidesLocal !== null) {
+//     // check if emplacement exist
+//     const exist = emplacementsVidesLocal.some(
+//       (el) => el.emplacement.trim() === emplacementInput.value.trim()
+//     );
+//     if (exist) {
+//       alert("Cet emplacement est déjà ajouté !");
+//     } else {
+//       emplacementsVidesLocal.push({ emplacement: emplacementInput.value });
 
-      localStorage.setItem(
-        "emplacements-vides",
-        JSON.stringify(emplacementsVidesLocal)
-      );
-    }
-  } else {
-    data.push({ emplacement: emplacementInput.value });
-    localStorage.setItem("emplacements-vides", JSON.stringify(data));
-  }
-  addCode.style.display = "none";
-  getDataLocal();
-});
+//       localStorage.setItem(
+//         "emplacements-vides",
+//         JSON.stringify(emplacementsVidesLocal)
+//       );
+//     }
+//   } else {
+//     data.push({ emplacement: emplacementInput.value });
+//     localStorage.setItem("emplacements-vides", JSON.stringify(data));
+//   }
+//   addCode.style.display = "none";
+//   getDataLocalEmplacement();
+// });
 
-const getDataLocal = () => {
+const getDataLocalEmplacement = () => {
   let dataLocal = JSON.parse(localStorage.getItem("emplacements-vides"));
   let output = `<li class="list-head">
                       <span>Emplacement</span>
@@ -39,11 +39,13 @@ const getDataLocal = () => {
                   </li>`;
   if (dataLocal !== null) {
     // dataLocal.reverse();
-    dataLocal.sort((a, b) => a.emplacement.toLowerCase().localeCompare(b.emplacement.toLowerCase()));
+    dataLocal.sort((a, b) =>
+      a.emplacement.toLowerCase().localeCompare(b.emplacement.toLowerCase())
+    );
     dataLocal.forEach((data) => {
       output += `<li class="list-content">
                         <span>${data.emplacement}</span>
-                        <span onclick="deleteEmplacement('${data.emplacement}')" id="${data.emplacement}">x</span>
+                        <span class="btn-delete" onclick="deleteEmplacement('${data.emplacement}')" id="${data.emplacement}">x</span>
                     </li>`;
     });
     emplacementList.innerHTML = output;
@@ -51,7 +53,10 @@ const getDataLocal = () => {
     emplacementList.innerHTML = "Pas encore d'emplacement ajouté";
   }
 };
-getDataLocal();
+
+document.getElementById("show-list-emplacement").addEventListener("click", (e) => {
+  getDataLocalEmplacement();
+});
 
 const deleteEmplacement = (emplacement) => {
   const dataLocal = JSON.parse(localStorage.getItem("emplacements-vides"));
@@ -60,9 +65,9 @@ const deleteEmplacement = (emplacement) => {
     const dataFiltred = dataLocal.filter(
       (el) => el.emplacement !== emplacement
     );
-    if (confirm("Are you sure you want to delete this emplacement ?")) {
+    if (confirm("Tu es sûr de supprimer cet emplacement ?")) {
       localStorage.setItem("emplacements-vides", JSON.stringify(dataFiltred));
     }
   }
-  getDataLocal();
+  getDataLocalEmplacement();
 };

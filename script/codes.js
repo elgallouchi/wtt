@@ -1,27 +1,27 @@
-let lists = document.getElementById("lists");
+// let lists = document.getElementById("lists");
 
-const deleteCode = (code) => {
-  const dataLocal = JSON.parse(localStorage.getItem("local-data"));
-  let val = "";
-  if (dataLocal !== null) {
-    const dataFiltred = dataLocal.filter((el) => {
-      val = el.code;
-      return (
-        el.code.toLowerCase() + "" + el.emplacement.toLowerCase() !==
-        code.toLowerCase()
-      );
-    });
-    if (confirm("Are you sure you want to delete this code ?")) {
-      localStorage.setItem("local-data", JSON.stringify(dataFiltred));
-    }
-  }
-  getDataLocal();
-};
+// const deleteCode = (code) => {
+//   const dataLocal = JSON.parse(localStorage.getItem("local-data"));
+//   console.log(dataLocal);
+//   if (dataLocal !== null) {
+//     const dataFiltred = dataLocal.filter((el) => {
+//       console.log(el.code);
+//       return (
+//         el.code.toLowerCase() + "" + el.emplacement.toLowerCase() !==
+//         code.toLowerCase()
+//       );
+//     });
+//     if (confirm("Are you sure you want to delete this code ?")) {
+//       localStorage.setItem("local-data", JSON.stringify(dataFiltred));
+//     }
+//   }
+//   getDataLocalCodes();
+// };
 
-const getDataLocal = () => {
+const getDataLocalCodes = () => {
   let dataLocal = JSON.parse(localStorage.getItem("local-data"));
   let output = `<li class="list-head">
-                    <span>ean</span>
+                    <span>Produit</span>
                     <span>emp</span>
                     <span></span>
                 </li>`;
@@ -29,9 +29,12 @@ const getDataLocal = () => {
     dataLocal.reverse();
     dataLocal.forEach((data) => {
       output += `<li class="list-content">
-                      <span>${data.code}</span>
+      <div class="ean-ref">
+      <span>EAN: ${data.code ? data.code : "NC"}</span>
+      <span>REF: ${data.reference ? data.reference : "NC"}</span>
+      </div>
                       <span>${data.emplacement}</span>
-                      <span onclick="deleteCode('${
+                      <span class="btn-delete" onclick="deleteCode('${
                         data.code + "" + data.emplacement
                       }')">x</span>
                   </li>`;
@@ -42,4 +45,7 @@ const getDataLocal = () => {
   }
   console.log("gatdatalocal code.js");
 };
-getDataLocal();
+
+document.getElementById("show-list-code").addEventListener("click", (e) => {
+  getDataLocalCodes();
+});
