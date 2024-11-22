@@ -42,12 +42,12 @@ btnAddEmplacement.addEventListener("click", (e) => {
           "emplacements-vides",
           JSON.stringify(emplacementsVidesLocal)
         );
-        notyf.success("Bien joué, tout s'est bien passé !");
+        notyf.success("✅ L'emplacement a été ajouté avec succès 👍 !");
       }
     } else {
       data.push({ emplacement: empInput.value });
       localStorage.setItem("emplacements-vides", JSON.stringify(data));
-      notyf.success("Bien joué, tout s'est bien passé !");
+      notyf.success("✅ L'emplacement a été ajouté avec succès 👍 !");
     }
     addCode.style.display = "none";
     getDataLocal();
@@ -93,7 +93,7 @@ btnAddCode.addEventListener("click", (e) => {
       refInput.value = "";
       emplacementInput.value = "";
       if (bolean) {
-        notyf.success("Bien joué !");
+        notyf.success("✅ Le produit  a été ajouté avec succès 👍 !");
       }
     } else {
       alert("Oops! Tu dois saisir soit le EAN ou Référence !");

@@ -106,7 +106,7 @@ ul li.list-content span:nth-of-type(3) {
   bottom: 0;
   right: 0;
   left: 0;
-  /* display: none; */
+  display: none;
   justify-content: center;
   align-items: center;
   padding: 1rem;
