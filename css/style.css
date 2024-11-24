@@ -68,10 +68,17 @@ ul li.list-content {
   padding: 0.5rem;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   border: 1px solid #bbb;
   border-radius: 0.3rem;
   margin: 0.3rem 0;
   position: relative;
+}
+.sol {
+  background-color: #4CAF50;
+    padding: 0.1rem 0.3rem;
+    border-radius: .3rem;
+    color: #fff;
 }
 
 ul li.list-content span:nth-of-type(1) {

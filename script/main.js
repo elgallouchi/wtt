@@ -86,8 +86,7 @@ btnAddCode.addEventListener("click", (e) => {
         });
         bolean = setDataDone;
       });
-
-      searchData(eanValue);
+      searchData(eanValue || refValue);
       addCode.style.display = "none";
       eanInput.value = "";
       refInput.value = "";
@@ -99,42 +98,6 @@ btnAddCode.addEventListener("click", (e) => {
       alert("Oops! Tu dois saisir soit le EAN ou Référence !");
     }
   }
-  //
-
-  //
-  // if (
-  //   eanValue.length.length > 13 ||
-  //   eanValue.length.length < 4 ||
-  //   refValue.length === 0 ||
-  //   empValue.length === 0
-  // ) {
-  //   if (eanValue.length.length > 13 || eanValue.length.length < 4) {
-  //     eanInput.style.border = "1px solid red";
-  //   } else {
-  //     eanInput.style.border = "1px solid #333";
-  //   }
-  //   if (refValue.length === 0) {
-  //     refInput.style.border = "1px solid red";
-  //   } else {
-  //     refInput.style.border = "1px solid #333";
-  //   }
-  //   if (empValue.length === 0) {
-  //     emplacementInput.style.border = "1px solid red";
-  //   } else {
-  //     emplacementInput.style.border = "1px solid #333";
-  //   }
-  // } else {
-  //   emplacementInput.style.border = "1px solid #333";
-  //   refInput.style.border = "1px solid #333";
-  //   eanInput.style.border = "1px solid #333";
-  //   setDataLocal({
-  //     code: eanValue.length,
-  //     reference: refValue,
-  //     emplacement: empValue,
-  //   });
-  //   addCode.style.display = "none";
-  //   searchData(eanValue.length);
-  // }
 });
 
 // wrrite in localestorage
@@ -147,12 +110,18 @@ const setDataLocal = (data) => {
     // verifier si il existe déjà !
     let filtredata = localData.some((element) => {
       return (
-        (element.code === data.code &&
-          element.emplacement === data.emplacement) ||
-        (element.reference === data.reference &&
-          element.emplacement === data.emplacement)
+        (element?.code &&
+          element?.code?.toLowerCase() === data?.code?.toLowerCase() &&
+          element?.emplacement?.toLowerCase() ===
+            data?.emplacement?.toLowerCase()) ||
+        (element?.reference &&
+          element?.reference?.toLowerCase() ===
+            data?.reference?.toLowerCase() &&
+          element?.emplacement?.toLowerCase() ===
+            data?.emplacement?.toLowerCase())
       );
     });
+
     if (filtredata) {
       alert("Ce produit est déjà ajouté !");
       return false;
@@ -202,7 +171,9 @@ const writeHisoryData = (newInput) => {
 
 // search function
 const searchData = async (val) => {
-  writeHisoryData(val);
+  if (val !== "") {
+    writeHisoryData(val);
+  }
   let localData = await getDataLocal();
   let output = `<li class="list-head">
                     <span>produit</span>
@@ -239,7 +210,9 @@ const searchData = async (val) => {
                     <span>EAN: ${data.code ? data.code : "NC"}</span>
                     <span>REF: ${data.reference ? data.reference : "NC"}</span>
                     </div>
-                    <span>${data.emplacement}</span>
+                    <span class="${
+                      data.emplacement.slice(-1) === "0" ? "sol" : ""
+                    }" >${data.emplacement}</span>
                     <span class="btn-delete" onclick="deleteCode('${
                       data.code + "" + data.emplacement
                     }')">x</span>

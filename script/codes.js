@@ -33,7 +33,9 @@ const getDataLocalCodes = () => {
       <span>EAN: ${data.code ? data.code : "NC"}</span>
       <span>REF: ${data.reference ? data.reference : "NC"}</span>
       </div>
-                      <span>${data.emplacement}</span>
+                      <span class="${
+                      data.emplacement.slice(-1) === "0" ? "sol" : ""
+                    }">${data.emplacement}</span>
                       <span class="btn-delete" onclick="deleteCode('${
                         data.code + "" + data.emplacement
                       }')">x</span>
